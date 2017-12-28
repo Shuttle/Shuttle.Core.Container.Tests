@@ -1,3 +1,3 @@
-# Shuttle.Core.ComponentContainer.Tests
+# Shuttle.Core.Container.Tests
 
-Common tests that are used to verify implementations of the `IComponentRegistry` and `IComponentResolver` interfaces.
+Tests that are used to verify implementations of the `IComponentRegistry` and `IComponentResolver` interfaces.
