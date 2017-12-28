@@ -8,7 +8,7 @@ namespace Shuttle.Core.Container.Tests
 	{
 		protected void RegisterSingleton(IComponentRegistry registry)
 		{
-			Guard.AgainstNull(registry, "registry");
+			Guard.AgainstNull(registry, nameof(registry));
 
 			Assert.IsFalse(registry.IsRegistered<IServiceDependency>());
 			Assert.IsFalse(registry.IsRegistered<IService>());
@@ -19,7 +19,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void RegisterTransient(IComponentRegistry registry)
 		{
-			Guard.AgainstNull(registry, "registry");
+			Guard.AgainstNull(registry, nameof(registry));
 
 			Assert.IsFalse(registry.IsRegistered<IServiceDependency>());
 			Assert.IsFalse(registry.IsRegistered<IService>());
@@ -30,7 +30,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void RegisterMultipleSingleton(IComponentRegistry registry)
 		{
-			Guard.AgainstNull(registry, "registry");
+			Guard.AgainstNull(registry, nameof(registry));
 
 			Assert.IsFalse(registry.IsRegistered<IMultipleImplementation<string>>());
 			Assert.IsFalse(registry.IsRegistered<IMultipleImplementation<int>>());
@@ -41,7 +41,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void RegisterMultipleTransient(IComponentRegistry registry)
 		{
-			Guard.AgainstNull(registry, "registry");
+			Guard.AgainstNull(registry, nameof(registry));
 
 			Assert.IsFalse(registry.IsRegistered<IMultipleImplementation<string>>());
 			Assert.IsFalse(registry.IsRegistered<IMultipleImplementation<int>>());
@@ -52,7 +52,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void ResolveSingleton(IComponentResolver resolver)
 		{
-			Guard.AgainstNull(resolver, "resolver");
+			Guard.AgainstNull(resolver, nameof(resolver));
 
 			var singleton = resolver.Resolve<IService>();
 
@@ -63,7 +63,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void ResolveTransient(IComponentResolver resolver)
 		{
-			Guard.AgainstNull(resolver, "resolver");
+			Guard.AgainstNull(resolver, nameof(resolver));
 
 			var transient = resolver.Resolve<IService>();
 
@@ -74,7 +74,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void ResolveMultipleSingleton(IComponentResolver resolver)
 		{
-			Guard.AgainstNull(resolver, "resolver");
+			Guard.AgainstNull(resolver, nameof(resolver));
 
 			Assert.IsNotNull(resolver.Resolve<IMultipleImplementation<string>>(), "The requested IMultipleImplementation<string> implementation may not be null.");
 			Assert.AreSame(resolver.Resolve<IMultipleImplementation<string>>(), resolver.Resolve<IMultipleImplementation<string>>(), "Multiple calls to resolve IMultipleImplementation<string> should return unique instances.");
@@ -85,7 +85,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void ResolveMultipleTransient(IComponentResolver resolver)
 		{
-			Guard.AgainstNull(resolver, "resolver");
+			Guard.AgainstNull(resolver, nameof(resolver));
 
 			Assert.IsNotNull(resolver.Resolve<IMultipleImplementation<string>>(), "The requested IMultipleImplementation<string> implementation may not be null.");
 			Assert.AreNotSame(resolver.Resolve<IMultipleImplementation<string>>(), resolver.Resolve<IMultipleImplementation<string>>(), "Multiple calls to resolve IMultipleImplementation<string> should return the same instance.");
@@ -96,7 +96,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void RegisterCollection(IComponentRegistry registry)
 		{
-			Guard.AgainstNull(registry, "registry");
+			Guard.AgainstNull(registry, nameof(registry));
 
 			Assert.IsFalse(registry.IsRegistered<IServiceDependency>());
 			Assert.IsFalse(registry.IsRegistered(typeof(IService)));
@@ -108,7 +108,7 @@ namespace Shuttle.Core.Container.Tests
 
 		protected void ResolveCollection(IComponentResolver resolver)
 		{
-			Guard.AgainstNull(resolver, "resolver");
+			Guard.AgainstNull(resolver, nameof(resolver));
 
 			Assert.AreEqual(3, resolver.ResolveAll<IService>().Count());
 		}
