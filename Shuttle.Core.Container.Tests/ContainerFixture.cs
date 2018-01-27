@@ -31,6 +31,26 @@ namespace Shuttle.Core.Container.Tests
             Assert.IsTrue(registry.Register<IService, Service>(Lifestyle.Transient).IsRegistered<IService>());
         }
 
+        protected void RegisterSingletonOpen(IComponentRegistry registry)
+        {
+            Guard.AgainstNull(registry, nameof(registry));
+
+            Assert.IsFalse(registry.IsRegistered(typeof(IOpenGeneric<>)));
+
+            Assert.IsTrue(registry.RegisterOpen(typeof(IOpenGeneric<>), typeof(OpenGeneric<>), Lifestyle.Singleton)
+                .IsRegistered(typeof(IOpenGeneric<>)));
+        }
+
+        protected void RegisterTransientOpen(IComponentRegistry registry)
+        {
+            Guard.AgainstNull(registry, nameof(registry));
+
+            Assert.IsFalse(registry.IsRegistered(typeof(IOpenGeneric<>)));
+
+            Assert.IsTrue(registry.RegisterOpen(typeof(IOpenGeneric<>), typeof(OpenGeneric<>), Lifestyle.Transient)
+                .IsRegistered(typeof(IOpenGeneric<>)));
+        }
+
         protected void RegisterMultipleSingleton(IComponentRegistry registry)
         {
             Guard.AgainstNull(registry, nameof(registry));
@@ -79,6 +99,28 @@ namespace Shuttle.Core.Container.Tests
             Assert.IsNotNull(transient, "The requested IService implementation may not be null.");
             Assert.AreNotSame(transient, resolver.Resolve<IService>(),
                 "Multiple calls to resolve IService should return unique instances.");
+        }
+
+        protected void ResolveSingletonOpen(IComponentResolver resolver)
+        {
+            Guard.AgainstNull(resolver, nameof(resolver));
+
+            var singleton = resolver.Resolve<IOpenGeneric<string>>();
+
+            Assert.IsNotNull(singleton, "The requested IOpenGeneric implementation may not be null.");
+            Assert.AreSame(singleton, resolver.Resolve<IOpenGeneric<string>>(),
+                "Multiple calls to resolve IOpenGeneric should return the same instance.");
+        }
+
+        protected void ResolveTransientOpen(IComponentResolver resolver)
+        {
+            Guard.AgainstNull(resolver, nameof(resolver));
+
+            var transient = resolver.Resolve<IOpenGeneric<string>>();
+
+            Assert.IsNotNull(transient, "The requested IOpenGeneric implementation may not be null.");
+            Assert.AreNotSame(transient, resolver.Resolve<IOpenGeneric<string>>(),
+                "Multiple calls to resolve IOpenGeneric should return unique instances.");
         }
 
         protected void ResolveMultipleSingleton(IComponentResolver resolver)
