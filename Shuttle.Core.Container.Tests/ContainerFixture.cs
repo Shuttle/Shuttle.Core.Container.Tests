@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using Shuttle.Core.Contract;
 
@@ -31,23 +30,23 @@ namespace Shuttle.Core.Container.Tests
             Assert.IsTrue(registry.Register<IService, Service>(Lifestyle.Transient).IsRegistered<IService>());
         }
 
-        protected void RegisterSingletonOpen(IComponentRegistry registry)
+        protected void RegisterSingletonGeneric(IComponentRegistry registry)
         {
             Guard.AgainstNull(registry, nameof(registry));
 
             Assert.IsFalse(registry.IsRegistered(typeof(IOpenGeneric<>)));
 
-            Assert.IsTrue(registry.RegisterOpen(typeof(IOpenGeneric<>), typeof(OpenGeneric<>), Lifestyle.Singleton)
+            Assert.IsTrue(registry.RegisterGeneric(typeof(IOpenGeneric<>), typeof(OpenGeneric<>), Lifestyle.Singleton)
                 .IsRegistered(typeof(IOpenGeneric<>)));
         }
 
-        protected void RegisterTransientOpen(IComponentRegistry registry)
+        protected void RegisterTransientGeneric(IComponentRegistry registry)
         {
             Guard.AgainstNull(registry, nameof(registry));
 
             Assert.IsFalse(registry.IsRegistered(typeof(IOpenGeneric<>)));
 
-            Assert.IsTrue(registry.RegisterOpen(typeof(IOpenGeneric<>), typeof(OpenGeneric<>), Lifestyle.Transient)
+            Assert.IsTrue(registry.RegisterGeneric(typeof(IOpenGeneric<>), typeof(OpenGeneric<>), Lifestyle.Transient)
                 .IsRegistered(typeof(IOpenGeneric<>)));
         }
 
@@ -101,7 +100,7 @@ namespace Shuttle.Core.Container.Tests
                 "Multiple calls to resolve IService should return unique instances.");
         }
 
-        protected void ResolveSingletonOpen(IComponentResolver resolver)
+        protected void ResolveSingletonGeneric(IComponentResolver resolver)
         {
             Guard.AgainstNull(resolver, nameof(resolver));
 
@@ -112,7 +111,7 @@ namespace Shuttle.Core.Container.Tests
                 "Multiple calls to resolve IOpenGeneric should return the same instance.");
         }
 
-        protected void ResolveTransientOpen(IComponentResolver resolver)
+        protected void ResolveTransientGeneric(IComponentResolver resolver)
         {
             Guard.AgainstNull(resolver, nameof(resolver));
 
