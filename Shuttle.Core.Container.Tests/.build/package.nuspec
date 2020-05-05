@@ -1,21 +1,26 @@
 <?xml version="1.0"?>
-<package >
-	<metadata>
-		<id>Shuttle.Core.Container.Tests</id>
-		<version>{semver}</version>
-		<authors>Eben Roux</authors>
-		<owners>Eben Roux</owners>
-		<licenseUrl>https://github.com/shuttle/Shuttle.Core.Container.Tests/raw/master/LICENSE</licenseUrl>
-		<projectUrl>https://github.com/shuttle/Shuttle.Core.Container.Tests</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/Shuttle/Shuttle.Core.Container.Tests/master/.media/logo.png</iconUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Tests that are used to verify implementations of the `IComponentRegistry` and `IComponentResolver` interfaces</description>
-		<releaseNotes/>
-		<copyright>Copyright (c) {year}, Eben Roux</copyright>
-		<tags>shuttle</tags>
-	  <dependencies>
-	    <dependency id="Shuttle.Core.Container" version="{Shuttle.Core.Container-version}" />
-	    <dependency id="NUnit" version="{NUnit-version}" />
-	  </dependencies>
-	</metadata>
+
+<package>
+  <metadata>
+    <id>Shuttle.Core.Container.Tests</id>
+    <version>{semver}</version>
+    <authors>Eben Roux</authors>
+    <owners>Eben Roux</owners>
+    <license type="expression">BSD-3-Clause</license>
+    <projectUrl>https://github.com/shuttle/Shuttle.Core.Container.Tests</projectUrl>
+    <icon>images\logo.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Tests that are used to verify implementations of the `IComponentRegistry` and `IComponentResolver` interfaces.</description>
+    <releaseNotes />
+    <copyright>Copyright (c) {year}, Eben Roux</copyright>
+    <tags>shuttle</tags>
+    <dependencies>
+      <dependency id="Shuttle.Core.Container" version="{Shuttle.Core.Container-version}" />
+      <dependency id="NUnit" version="{NUnit-version}" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\..\..\.media\logo.png" target="images\" />
+    <file src="lib\**\*.*" target="lib" />
+  </files>
 </package>
